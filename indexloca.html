@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="style.css" rel="stylesheet">
+  <title>JS Animations Showcase (Local)</title>
+</head>
+
+<body>
+  <header class="hero">
+    <h1>JS Animations Showcase (Local)</h1>
+  </header>
+  <script src="script-local.js"></script>
+  <main>
+    <div class="left-panel card">
+      <h3 class="card-header">Animations</h3>
+   
+        <div id="repos-container" class="card-body">
+            <button class="btn" onclick="loadAnimation('Bezier-Curve')">Bezier Curve Animation</button>
+            <button class="btn" onclick="loadAnimation('BorderLines')">BorderLines Animation</button>
+            <button class="btn" onclick="loadAnimation('Confetti')">Confetti Animation</button>
+            <button class="btn" onclick="loadAnimation('Depth-of-Field')">Depth of Field Animation</button>
+            <button class="btn" onclick="loadAnimation('Inverse Kinematics')">Inverse Kinematics Animation</button>
+            <button class="btn" onclick="loadAnimation('jack')">Jack Animation</button>
+            <button class="btn" onclick="loadAnimation('particles')">Particles Animation</button>
+            <button class="btn" onclick="loadAnimation('Pendulum')">Pendulum Animation</button>
+            <button class="btn" onclick="loadAnimation('Random Grid')">Random Grid Animation</button>
+            <button class="btn" onclick="loadAnimation('Random Lines')">Random Lines Animation</button>
+            <button class="btn" onclick="loadAnimation('Random Motion')">Random Motion Animation</button>
+            <button class="btn" onclick="loadAnimation('Random Pan')">Random Pan Animation</button>
+            <button class="btn" onclick="loadAnimation('Random Stills')">Random Stills Animation</button>
+            <button class="btn" onclick="loadAnimation('Spirograph')">Spirograph Animation</button>
+            <button class="btn" onclick="loadAnimation('Squash')">Squash Animation</button>
+            <button class="btn" onclick="loadAnimation('Stutter Frames')">Stutter Frames Animation</button>
+            <button class="btn" onclick="loadAnimation('Swinging')">Swinging Animation</button>
+            <button class="btn" onclick="loadAnimation('undulations')">Undulations Animation</button>
+            <button class="btn" onclick="loadAnimation('vibrating')">Vibrating Animation</button>
+          </div>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="animation-preview">
+        <iframe id="animation-container" class="animation-box" width="400" height="300"></iframe>
+      </div>
+      <div id="script-box" class="card details-box">
+        Select an animation to view details.
+      </div>
+    </div>
+    
+  </main>
+  <p>Content source: <a href="https://www.motionscript.com/expressions-lab-ae65/table-of-contents.html" target="_blank">Dan Ebberts' AE Expressions and Scripting Resource</a></p>
+  <p>This resource aims to make Dan Ebberts' valuable After Effects knowledge accessible again. All credit goes to him.</p>
+  <script>
+    function loadAnimation(animationName) {
+      // Cambia la ruta del iframe al archivo local correspondiente
+      const animationContainerEl = document.querySelector('#animation-container');
+      animationContainerEl.src = `animations/${animationName}/index.html`;
+
+      // Muestra información asociada a la animación (opcional)
+      const scriptBox = document.querySelector('#script-box');
+      const scriptFile = `animations/${animationName}/script.json`;
+      fetch(scriptFile)
+        .then(response => response.json())
+        .then(data => {
+          scriptBox.innerHTML = `
+            <h3>${data.title}</h3>
+            <p>${data.description}</p>
+          `;
+        })
+        .catch(() => {
+          scriptBox.textContent = 'Script not available.';
+        });
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animation Showcase</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Animation Showcase</h1>
+    <p>Click on any animation below to preview it!</p>
+  </header>
+
+  <main>
+    <ul id="animation-list">
+      <!-- JavaScript will populate this list -->
+    </ul>
+  </main>
+
+  <footer>
+    <p>Powered by your creativity! 🎨</p>
+  </footer>
+
+  <script>
+    // List of animation folders
+    const animationFolders = [
+  "3DRotatingCube", "AudioVisualizer", "BouncingBall", "ClickExplosion", "ClothSimulation",
+  "DoublePendulum", "DustParticles", "ExpandingCircles", "ExplodingText", "Fireworks",
+  "FlowField", "FluidSimulation", "FractalTree", "GalaxySimulation", "GeometricExplosion",
+  "InteractiveDrawing", "KaleidoscopeEffect", "MagneticAttraction", "MazeSolver", "MorphingText",
+  "MouseFollower", "ObjectCollisions", "OrganicGrowth", "ParticleExplosion", "ParticleTrails",
+  "PixelExplosion", "RainDrops", "RibbonEffect", "RotatingPolygons", "SineWave", "Snowfall",
+  "SpringOscillation", "TextTrail", "TypingEffect", "VoronoiPattern", "WaterRipple", "WavyText"
+];
+
+    const animationListEl = document.getElementById('animation-list');
+
+    // Dynamically generate links
+    animationFolders.forEach(folder => {
+      const listItem = document.createElement('li');
+      const link = document.createElement('a');
+
+      link.href = `${folder}/index.html`; // Path to each animation folder
+      link.textContent = folder; // Display folder name as link text
+      link.target = "_blank"; // Open in a new tab
+
+      listItem.appendChild(link);
+      animationListEl.appendChild(listItem);
+    });
+  </script>
+</body>
+</html>
